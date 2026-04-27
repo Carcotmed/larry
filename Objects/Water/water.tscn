@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://sdar0x1omnlq"]
+
+[ext_resource type="Texture2D" uid="uid://712nw3r0femk" path="res://Objects/Water/water.png" id="1_6tk5x"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_u8pa8"]
+
+[node name="Water" type="Area2D" unique_id=1159942751]
+
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=1105631058]
+shape = SubResource("WorldBoundaryShape2D_u8pa8")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1713979141]
+position = Vector2(0, 11)
+texture = ExtResource("1_6tk5x")
