@@ -1,21 +1,9 @@
 [gd_scene format=3 uid="uid://dkdca2xqu5d3x"]
 
 [ext_resource type="Texture2D" uid="uid://dotlnmnhxbki4" path="res://Objects/Bubble/bubble.png" id="1_go5to"]
-[ext_resource type="Script" uid="uid://fuxw3k7jfv31" path="res://Objects/Bubble/bubble.gd" id="1_hthru"]
+[ext_resource type="Script" uid="uid://dnynd2lso5s7r" path="res://Objects/Bubble/bubble.gd" id="1_hthru"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_go5to"]
-radius = 9.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_hthru"]
-radius = 17.029387
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7g3vg"]
-atlas = ExtResource("1_go5to")
-region = Rect2(0, 64, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8akg8"]
-atlas = ExtResource("1_go5to")
-region = Rect2(0, 80, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hthru"]
 atlas = ExtResource("1_go5to")
@@ -37,17 +25,6 @@ region = Rect2(0, 48, 16, 16)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7g3vg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8akg8")
-}],
-"loop": false,
-"name": &"pop",
-"speed": 20.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_hthru")
 }, {
 "duration": 1.0,
@@ -65,34 +42,14 @@ animations = [{
 }]
 
 [node name="Bubble" type="RigidBody2D" unique_id=561911913]
-collision_layer = 8
-mass = 0.1
-gravity_scale = -0.15
 script = ExtResource("1_hthru")
 
 [node name="Hitbox" type="CollisionShape2D" parent="." unique_id=2083406001]
 shape = SubResource("CircleShape2D_go5to")
 
-[node name="ContactHitbox" type="Area2D" parent="." unique_id=1155718376]
-collision_layer = 8
-collision_mask = 6
-monitoring = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ContactHitbox" unique_id=1858127435]
-shape = SubResource("CircleShape2D_hthru")
-debug_color = Color(0.68, 0.35133332, 0, 0.105882354)
-
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1355342808]
 sprite_frames = SubResource("SpriteFrames_7g3vg")
-animation = &"pop"
+animation = &"spawn"
 autoplay = "spawn"
-frame = 1
+frame = 3
 frame_progress = 1.0
-
-[node name="ContactAwaitTimer" type="Timer" parent="." unique_id=48106133]
-wait_time = 0.4
-one_shot = true
-autostart = true
-
-[connection signal="body_entered" from="ContactHitbox" to="." method="_on_area_2d_body_entered"]
-[connection signal="timeout" from="ContactAwaitTimer" to="." method="_on_contact_await_timer_timeout"]

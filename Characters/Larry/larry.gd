@@ -1,10 +1,11 @@
 extends CharacterBody2D
+class_name Larry
 
 @onready var state_machine: StateMachine = %StateMachine
 @onready var sprite: AnimatedSprite2D = %Sprite
 
-@onready var dead_state: Node = $StateMachine/DeadState
-@onready var dead_timer: Timer = %DeadTimer
+@export var dead_state: State
+@export var jumping_state: State
 
 var input_stack: Array[InputEvent]
 
@@ -24,3 +25,6 @@ func _on_water_body_entered(body: Node2D) -> void:
 	if (state_machine.current_state != dead_state):
 		state_machine.change_state(dead_state)
 		GameManager.on_death()
+		
+func _on_bubble_touched() -> void:
+	state_machine.change_state(jumping_state)
