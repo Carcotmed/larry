@@ -16,9 +16,10 @@ func process_physics(delta: float) -> State:
 	parent.velocity.y += Constants.gravity * delta
 	
 	if (parent.velocity.y > 0):
-		return falling_state 
+		return falling_state
+		
 	
-	var movement = Input.get_axis('Move Left', 'Move Right') * Constants.player_move_speex
+	var movement = Input.get_axis('Move Left', 'Move Right') * Constants.player_move_speed
 	
 	if movement != 0:
 		parent.sprite.flip_h = movement < 0

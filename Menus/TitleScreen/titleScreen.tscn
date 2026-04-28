@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://cbjqif7o3hh0y"]
+
+[ext_resource type="Script" uid="uid://djjxm6dhvcjlr" path="res://Menus/TitleScreen/title_screen.gd" id="1_7tr42"]
+[ext_resource type="Texture2D" uid="uid://1oafyypeuxdr" path="res://icon.svg" id="1_xoben"]
+[ext_resource type="FontFile" uid="uid://c2rv6mu5r618h" path="res://Resources/Pixel Game.otf" id="2_vkv60"]
+
+[node name="TitleScreen" type="Control" unique_id=2071563170]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7tr42")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1904091159]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_right = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_xoben")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=350377848]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 353.0
+grow_vertical = 2
+size_flags_vertical = 8
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer" unique_id=1044972825]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 78
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer2" unique_id=425710175]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vkv60")
+theme_override_font_sizes/font_size = 100
+text = "The Legend of Larry"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer2" unique_id=242233111]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 6
+theme_override_constants/separation = 20
+
+[node name="PlayButton" type="Button" parent="MarginContainer/VBoxContainer2/VBoxContainer" unique_id=651978019]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vkv60")
+theme_override_font_sizes/font_size = 50
+text = "Play"
+
+[node name="SettingsButton" type="Button" parent="MarginContainer/VBoxContainer2/VBoxContainer" unique_id=2043975797]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vkv60")
+theme_override_font_sizes/font_size = 50
+text = "Settings"
+
+[node name="CreditsButton" type="Button" parent="MarginContainer/VBoxContainer2/VBoxContainer" unique_id=126636696]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vkv60")
+theme_override_font_sizes/font_size = 50
+text = "Credits"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer2/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]

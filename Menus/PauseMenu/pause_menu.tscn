@@ -1,0 +1,103 @@
+[gd_scene format=3 uid="uid://bq70h47swnkvo"]
+
+[ext_resource type="Script" uid="uid://bdw54y65wckgt" path="res://Menus/PauseMenu/pause_menu.gd" id="1_36y7k"]
+[ext_resource type="FontFile" uid="uid://c2rv6mu5r618h" path="res://Resources/Pixel Game.otf" id="2_wxfa8"]
+
+[node name="PauseMenu" type="Control" unique_id=1802406152]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_36y7k")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=823392326]
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer" unique_id=290854504]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -246.0
+offset_top = -179.5
+offset_right = 246.0
+offset_bottom = 179.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PanelContainer" unique_id=1540581943]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/PanelContainer/MarginContainer" unique_id=1766580629]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer/MarginContainer" unique_id=1617542225]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1575857948]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_wxfa8")
+theme_override_font_sizes/font_size = 47
+text = "Paused"
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer" unique_id=314811694]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer" unique_id=86304608]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1731814275]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ResumeButton" type="Button" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1762723022]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_wxfa8")
+theme_override_font_sizes/font_size = 40
+text = "Resume"
+
+[node name="ConfigurationButton" type="Button" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=622903900]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_wxfa8")
+theme_override_font_sizes/font_size = 40
+text = "Configuration"
+
+[node name="ExitButton" type="Button" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=67908777]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_wxfa8")
+theme_override_font_sizes/font_size = 40
+text = "Exit to Menu"
+
+[node name="VSeparator" type="VSeparator" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1213447233]
+layout_mode = 2
+theme_override_constants/separation = 34
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=192550538]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=857694514]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_wxfa8")
+theme_override_font_sizes/font_size = 30
+text = "Depth: 250m"
+
+[node name="Label2" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=276368000]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_wxfa8")
+theme_override_font_sizes/font_size = 30
+text = "Score: a lot"
+
+[connection signal="pressed" from="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

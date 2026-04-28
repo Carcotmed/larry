@@ -8,7 +8,7 @@ extends State
 @onready var landing_sound: AudioStreamPlayer2D = %LandingSound
 
 func enter():
-	sprite.play("jumping")
+	pass
 	
 func exit():
 	landing_sound.play()
@@ -16,7 +16,7 @@ func exit():
 func process_physics(delta: float) -> State:
 	parent.velocity.y += Constants.gravity * delta
 	
-	var movement = Input.get_axis('Move Left', 'Move Right') * Constants.player_move_speex
+	var movement = Input.get_axis('Move Left', 'Move Right') * Constants.player_move_speed
 	
 	if movement != 0:
 		parent.sprite.flip_h = movement < 0

@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://taav0xngld11"]
+
+[ext_resource type="Script" uid="uid://bg8kkv0lpd2d1" path="res://game.gd" id="1_fc0e3"]
+[ext_resource type="PackedScene" uid="uid://bv15pl2xe503x" path="res://Characters/Larry/larry.tscn" id="1_feb5d"]
+[ext_resource type="PackedScene" uid="uid://sdar0x1omnlq" path="res://Objects/Water/water.tscn" id="3_7jktm"]
+[ext_resource type="PackedScene" uid="uid://8h0yt13cwl6k" path="res://Objects/Platform/platform.tscn" id="3_feb5d"]
+[ext_resource type="PackedScene" uid="uid://c2a03ffm54v4a" path="res://Characters/Turtle/turtle.tscn" id="5_7jktm"]
+
+[node name="Game" type="Node2D" unique_id=680668013]
+script = ExtResource("1_fc0e3")
+
+[node name="Larry" parent="." unique_id=1903725710 instance=ExtResource("1_feb5d")]
+
+[node name="Camera2D" type="Camera2D" parent="Larry" unique_id=607319450]
+position = Vector2(0, -1)
+scale = Vector2(1, 0.9813024)
+zoom = Vector2(2, 2)
+limit_left = -288
+limit_right = 288
+drag_vertical_enabled = true
+drag_bottom_margin = 0.6
+
+[node name="Water" parent="." unique_id=1159942751 instance=ExtResource("3_7jktm")]
+position = Vector2(0, 191)
+
+[node name="Platform" parent="." unique_id=1746797079 instance=ExtResource("3_feb5d")]
+position = Vector2(-193.99998, -89.99999)
+
+[node name="Platform2" parent="." unique_id=1687025915 instance=ExtResource("3_feb5d")]
+position = Vector2(-3, 56)
+
+[node name="Platform3" parent="." unique_id=2132676509 instance=ExtResource("3_feb5d")]
+position = Vector2(224.99998, -88.00001)
+
+[node name="Platform4" parent="." unique_id=1608019340 instance=ExtResource("3_feb5d")]
+position = Vector2(-59, -87)
+
+[node name="Turtle" parent="." unique_id=1243228890 instance=ExtResource("5_7jktm")]
+position = Vector2(-163, -134)
+
+[connection signal="body_entered" from="Water" to="Larry" method="_on_water_body_entered"]

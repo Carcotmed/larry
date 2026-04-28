@@ -7,6 +7,11 @@
 [ext_resource type="Script" uid="uid://xc2l5fv2lok7" path="res://Characters/Larry/States/jumping_state.gd" id="4_ub2mn"]
 [ext_resource type="Script" uid="uid://68prq86qnv5a" path="res://Characters/Larry/States/running_state.gd" id="6_llxk5"]
 [ext_resource type="Script" uid="uid://dgj2ly4mbymw" path="res://Characters/Larry/States/falling_state.gd" id="7_pb1v7"]
+[ext_resource type="Script" uid="uid://batgor0wl04tg" path="res://Characters/Larry/States/dead_state.gd" id="8_8vhg5"]
+[ext_resource type="Script" uid="uid://dcrhv01td2nji" path="res://Characters/Larry/gun_pivot.gd" id="9_g5g8x"]
+[ext_resource type="Script" uid="uid://dsu4630b6nqqs" path="res://Characters/Larry/bubble_gun.gd" id="10_flha0"]
+[ext_resource type="Texture2D" uid="uid://bks3t7r75jvx2" path="res://Characters/Larry/bubble_gun.png" id="10_xjor5"]
+[ext_resource type="PackedScene" uid="uid://dkdca2xqu5d3x" path="res://Objects/Bubble/Bubble.tscn" id="11_xhuru"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_llxk5"]
 radius = 15.0
@@ -143,7 +148,7 @@ animations = [{
 
 [node name="Larry" type="CharacterBody2D" unique_id=1903725710]
 collision_layer = 2
-collision_mask = 5
+collision_mask = 13
 script = ExtResource("1_a6pft")
 
 [node name="Hitbox" type="CollisionShape2D" parent="." unique_id=1277221526]
@@ -187,8 +192,33 @@ idle_state = NodePath("../IdleState")
 jumping_state = NodePath("../JumpingState")
 running_state = NodePath("../RunningState")
 
+[node name="DeadState" type="Node" parent="StateMachine" unique_id=1022986084]
+script = ExtResource("8_8vhg5")
+
 [node name="JumpingSound" type="AudioStreamPlayer2D" parent="." unique_id=1830654249]
 unique_name_in_owner = true
 
 [node name="LandingSound" type="AudioStreamPlayer2D" parent="." unique_id=156488574]
 unique_name_in_owner = true
+
+[node name="GunPivot" type="Marker2D" parent="." unique_id=572359290]
+position = Vector2(0, -13)
+script = ExtResource("9_g5g8x")
+
+[node name="BubbleGun" type="Node2D" parent="GunPivot" unique_id=854671451]
+position = Vector2(17, 0)
+script = ExtResource("10_flha0")
+bubble = ExtResource("11_xhuru")
+
+[node name="BubbleGunSprite" type="Sprite2D" parent="GunPivot/BubbleGun" unique_id=251286790]
+unique_name_in_owner = true
+texture = ExtResource("10_xjor5")
+
+[node name="Muzzle" type="Marker2D" parent="GunPivot/BubbleGun" unique_id=1624052945]
+position = Vector2(8, -1)
+
+[node name="ShootCooldown" type="Timer" parent="GunPivot/BubbleGun" unique_id=2104711118]
+
+[node name="ShootSound" type="AudioStreamPlayer2D" parent="GunPivot/BubbleGun" unique_id=1337435448]
+
+[connection signal="timeout" from="GunPivot/BubbleGun/ShootCooldown" to="GunPivot/BubbleGun" method="_on_shoot_cooldown_timeout"]

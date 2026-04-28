@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://dkdca2xqu5d3x"]
+
+[ext_resource type="Texture2D" uid="uid://dotlnmnhxbki4" path="res://Objects/Bubble/bubble.png" id="1_go5to"]
+[ext_resource type="Script" uid="uid://dnynd2lso5s7r" path="res://Objects/Bubble/bubble.gd" id="1_hthru"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_go5to"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hthru"]
+atlas = ExtResource("1_go5to")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nygxo"]
+atlas = ExtResource("1_go5to")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i6rse"]
+atlas = ExtResource("1_go5to")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lv5ru"]
+atlas = ExtResource("1_go5to")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7g3vg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hthru")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nygxo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i6rse")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lv5ru")
+}],
+"loop": false,
+"name": &"spawn",
+"speed": 15.0
+}]
+
+[node name="Bubble" type="CharacterBody2D" unique_id=1029272385]
+collision_layer = 8
+collision_mask = 6
+script = ExtResource("1_hthru")
+
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=2083406001]
+shape = SubResource("CircleShape2D_go5to")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1355342808]
+sprite_frames = SubResource("SpriteFrames_7g3vg")
+animation = &"spawn"
+autoplay = "spawn"
+frame = 3
+frame_progress = 1.0

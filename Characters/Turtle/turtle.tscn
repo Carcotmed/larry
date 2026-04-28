@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://c2a03ffm54v4a"]
+
+[ext_resource type="Texture2D" uid="uid://do4b7cgl34f6w" path="res://Characters/Turtle/turtle.png" id="1_i51ry"]
+[ext_resource type="Script" uid="uid://deqrtce6yic4x" path="res://Characters/Turtle/turtle.gd" id="1_n7pwb"]
+[ext_resource type="Script" uid="uid://nbypxw4kebrl" path="res://Misc/State Machines/Common/state_machine.gd" id="3_a2ray"]
+[ext_resource type="Script" uid="uid://celvmsxq6483j" path="res://Characters/Turtle/States/walking_state.gd" id="4_3ryfe"]
+[ext_resource type="Script" uid="uid://c2yaonm002die" path="res://Characters/Turtle/States/falling_state.gd" id="5_eghih"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n7pwb"]
+radius = 6.5
+height = 18.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a2ray"]
+atlas = ExtResource("1_i51ry")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ryfe"]
+atlas = ExtResource("1_i51ry")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j45i5"]
+atlas = ExtResource("1_i51ry")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_da27a"]
+atlas = ExtResource("1_i51ry")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eghih"]
+atlas = ExtResource("1_i51ry")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oy22m"]
+atlas = ExtResource("1_i51ry")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j45i5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a2ray")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ryfe")
+}],
+"loop": true,
+"name": &"bubbled",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j45i5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_da27a")
+}],
+"loop": true,
+"name": &"falling",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eghih")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oy22m")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 3.0
+}]
+
+[node name="Turtle" type="CharacterBody2D" unique_id=1243228890]
+scale = Vector2(2, 2)
+collision_layer = 4
+collision_mask = 11
+script = ExtResource("1_n7pwb")
+
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=1696559490]
+unique_name_in_owner = true
+position = Vector2(0, -6)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_n7pwb")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=585578599]
+unique_name_in_owner = true
+position = Vector2(0, -6)
+sprite_frames = SubResource("SpriteFrames_j45i5")
+animation = &"falling"
+autoplay = "walking"
+frame_progress = 0.8189896
+
+[node name="RayCastRight" type="RayCast2D" parent="." unique_id=1521126465]
+unique_name_in_owner = true
+position = Vector2(8, -6)
+target_position = Vector2(0, 10)
+
+[node name="RayCastLeft" type="RayCast2D" parent="." unique_id=1884705462]
+unique_name_in_owner = true
+position = Vector2(-8, -6)
+target_position = Vector2(0, 10)
+
+[node name="StateMachine" type="Node" parent="." unique_id=1942267166 node_paths=PackedStringArray("parent", "initial_state")]
+script = ExtResource("3_a2ray")
+parent = NodePath("..")
+initial_state = NodePath("FallingState")
+metadata/_custom_type_script = "uid://nbypxw4kebrl"
+
+[node name="WalkingState" type="Node" parent="StateMachine" unique_id=438093955 node_paths=PackedStringArray("falling_state")]
+unique_name_in_owner = true
+script = ExtResource("4_3ryfe")
+falling_state = NodePath("../FallingState")
+
+[node name="FallingState" type="Node" parent="StateMachine" unique_id=2075769807 node_paths=PackedStringArray("walking_state")]
+unique_name_in_owner = true
+script = ExtResource("5_eghih")
+walking_state = NodePath("../WalkingState")

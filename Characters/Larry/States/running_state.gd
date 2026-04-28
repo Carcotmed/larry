@@ -15,7 +15,7 @@ func process_input(event: InputEvent) -> State:
 	return null
 
 func process_physics(delta: float) -> State:
-	var movement = Input.get_axis('Move Left', 'Move Right') * Constants.player_move_speex
+	var movement = Input.get_axis('Move Left', 'Move Right') * Constants.player_move_speed
 	
 	if movement == 0:
 		return idle_state

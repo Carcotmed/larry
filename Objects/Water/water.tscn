@@ -1,14 +1,25 @@
 [gd_scene format=3 uid="uid://sdar0x1omnlq"]
 
-[ext_resource type="Texture2D" uid="uid://712nw3r0femk" path="res://Objects/Water/water.png" id="1_6tk5x"]
+[ext_resource type="Script" uid="uid://b2ggdt64yfppp" path="res://Objects/Water/water.gd" id="1_6tk5x"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_u8pa8"]
 
+[sub_resource type="Gradient" id="Gradient_u8pa8"]
+colors = PackedColorArray(0, 0.5130001, 0.54, 0.64705884, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6tk5x"]
+gradient = SubResource("Gradient_u8pa8")
+
 [node name="Water" type="Area2D" unique_id=1159942751]
+scale = Vector2(2.2000008, 2.6799994)
+collision_mask = 2
+script = ExtResource("1_6tk5x")
 
 [node name="Hitbox" type="CollisionShape2D" parent="." unique_id=1105631058]
 shape = SubResource("WorldBoundaryShape2D_u8pa8")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1713979141]
-position = Vector2(0, 11)
-texture = ExtResource("1_6tk5x")
+position = Vector2(-2.289852e-06, 75.63571)
+rotation = 1.5707964
+scale = Vector2(0.5907366, 528.85657)
+texture = SubResource("GradientTexture1D_6tk5x")

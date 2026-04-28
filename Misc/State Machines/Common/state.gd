@@ -1,7 +1,7 @@
 extends Node
 class_name State
 
-var parent: Node
+var parent: CharacterBody2D
 
 func enter():
 	pass
