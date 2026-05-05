@@ -38,4 +38,5 @@ func process_physics(delta: float) -> State:
 
 
 func _on_bonk_area_body_entered(_body: Node2D) -> void:
-	parent.velocity.y = 0
+	if _body is not Bubble:
+		parent.velocity.y = 0

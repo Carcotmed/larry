@@ -140,6 +140,7 @@ script = ExtResource("1_2v4dy")
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=370735287]
 sprite_frames = SubResource("SpriteFrames_y1o6b")
 autoplay = "default"
+frame_progress = 0.12465409
 
 [node name="Hitbox" type="CollisionPolygon2D" parent="." unique_id=1882726130]
 position = Vector2(0, 2)

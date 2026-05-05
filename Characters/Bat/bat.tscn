@@ -14,35 +14,35 @@ height = 32.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_shk6a"]
 atlas = ExtResource("2_momkg")
-region = Rect2(0, 128, 32, 32)
+region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iqo0i"]
 atlas = ExtResource("2_momkg")
-region = Rect2(0, 160, 32, 32)
+region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_evj2c"]
 atlas = ExtResource("2_momkg")
-region = Rect2(0, 192, 32, 32)
+region = Rect2(192, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cv8dp"]
 atlas = ExtResource("2_momkg")
-region = Rect2(0, 224, 32, 32)
+region = Rect2(224, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u8nfl"]
 atlas = ExtResource("2_momkg")
-region = Rect2(0, 256, 32, 32)
+region = Rect2(256, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_v4plp"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ovd7t"]
 atlas = ExtResource("2_momkg")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2fflx"]
-atlas = ExtResource("2_momkg")
-region = Rect2(0, 32, 32, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_vfgvi"]
 atlas = ExtResource("2_momkg")
-region = Rect2(0, 96, 32, 32)
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v4plp"]
+atlas = ExtResource("2_momkg")
+region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_momkg"]
 atlas = ExtResource("3_ovd7t")
@@ -85,18 +85,18 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_v4plp")
+"texture": SubResource("AtlasTexture_ovd7t")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2fflx")
+"texture": SubResource("AtlasTexture_vfgvi")
 }],
 "loop": true,
 "name": &"flying",
-"speed": 3.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vfgvi")
+"texture": SubResource("AtlasTexture_v4plp")
 }],
 "loop": false,
 "name": &"hanging",
@@ -135,8 +135,9 @@ shape = SubResource("CapsuleShape2D_momkg")
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1860307410]
 unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_ovd7t")
-animation = &"hanging"
+animation = &"flying"
 autoplay = "hanging"
+frame_progress = 0.41595802
 
 [node name="TriggerZone" type="Area2D" parent="." unique_id=1798038734]
 collision_layer = 0

@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bntbeobimendu"]
+
+[ext_resource type="Script" uid="uid://b8n5c1i7lyhpn" path="res://Misc/fake_wall_trigger.gd" id="1_hsqhm"]
+
+[node name="Trigger" type="Area2D" unique_id=425999786]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_hsqhm")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
