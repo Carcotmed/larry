@@ -21,6 +21,10 @@ Constants="*uid://3bo1nwsdeois"
 GameManager="*uid://x3o4age73vew"
 BackgroundMusic="*uid://d077bymi3vogh"
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [input]
 
 "Move Left"={
