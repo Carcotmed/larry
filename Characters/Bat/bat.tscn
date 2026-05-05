@@ -1,0 +1,185 @@
+[gd_scene format=3 uid="uid://8jtmcd8cqdce"]
+
+[ext_resource type="Script" uid="uid://scs57ki3po1x" path="res://Characters/Bat/bat.gd" id="1_dbd86"]
+[ext_resource type="Texture2D" uid="uid://byumtk7wdpshj" path="res://Characters/Bat/bat.png" id="2_momkg"]
+[ext_resource type="Script" uid="uid://nbypxw4kebrl" path="res://Misc/State Machines/Common/state_machine.gd" id="2_ovd7t"]
+[ext_resource type="Script" uid="uid://b1fir6qe7tjft" path="res://Characters/Bat/states/idle_state.gd" id="3_momkg"]
+[ext_resource type="Texture2D" uid="uid://dotlnmnhxbki4" path="res://Objects/Bubble/bubble.png" id="3_ovd7t"]
+[ext_resource type="Script" uid="uid://ck4ppqnxkt33h" path="res://Characters/Bat/states/chasing_state.gd" id="5_2r4mg"]
+[ext_resource type="Script" uid="uid://b6igi5n320lhy" path="res://Characters/Bat/states/bubbled_state.gd" id="6_iqo0i"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_momkg"]
+radius = 8.0
+height = 32.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_shk6a"]
+atlas = ExtResource("2_momkg")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iqo0i"]
+atlas = ExtResource("2_momkg")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_evj2c"]
+atlas = ExtResource("2_momkg")
+region = Rect2(0, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cv8dp"]
+atlas = ExtResource("2_momkg")
+region = Rect2(0, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u8nfl"]
+atlas = ExtResource("2_momkg")
+region = Rect2(0, 256, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v4plp"]
+atlas = ExtResource("2_momkg")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2fflx"]
+atlas = ExtResource("2_momkg")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vfgvi"]
+atlas = ExtResource("2_momkg")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_momkg"]
+atlas = ExtResource("3_ovd7t")
+region = Rect2(0, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0jlcr"]
+atlas = ExtResource("3_ovd7t")
+region = Rect2(0, 80, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ovd7t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_shk6a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iqo0i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_evj2c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iqo0i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_shk6a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cv8dp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u8nfl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cv8dp")
+}],
+"loop": true,
+"name": &"bubbled",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v4plp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2fflx")
+}],
+"loop": true,
+"name": &"flying",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vfgvi")
+}],
+"loop": false,
+"name": &"hanging",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_momkg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0jlcr")
+}],
+"loop": false,
+"name": &"pop",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ovd7t"]
+radius = 58.0
+height = 292.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2r4mg"]
+radius = 21.0
+
+[node name="Bat" type="CharacterBody2D" unique_id=1717071745 node_paths=PackedStringArray("bubbled_state")]
+collision_layer = 4
+collision_mask = 10
+script = ExtResource("1_dbd86")
+bubbled_state = NodePath("StateMachine/BubbledState")
+
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=2110351681]
+position = Vector2(0, 1)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_momkg")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1860307410]
+unique_name_in_owner = true
+sprite_frames = SubResource("SpriteFrames_ovd7t")
+animation = &"hanging"
+autoplay = "hanging"
+
+[node name="TriggerZone" type="Area2D" parent="." unique_id=1798038734]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TriggerZone" unique_id=839557469]
+position = Vector2(0, 67)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_ovd7t")
+debug_color = Color(0.77, 0.4491667, 0, 0.29411766)
+
+[node name="StateMachine" type="Node" parent="." unique_id=2097285781 node_paths=PackedStringArray("parent", "initial_state")]
+unique_name_in_owner = true
+script = ExtResource("2_ovd7t")
+parent = NodePath("..")
+initial_state = NodePath("IdleState")
+metadata/_custom_type_script = "uid://nbypxw4kebrl"
+
+[node name="IdleState" type="Node" parent="StateMachine" unique_id=894694401 node_paths=PackedStringArray("chasing_state")]
+script = ExtResource("3_momkg")
+chasing_state = NodePath("../ChasingState")
+
+[node name="ChasingState" type="Node" parent="StateMachine" unique_id=1717766519]
+script = ExtResource("5_2r4mg")
+
+[node name="BubbledState" type="Node" parent="StateMachine" unique_id=289610204 node_paths=PackedStringArray("chasing_state")]
+script = ExtResource("6_iqo0i")
+chasing_state = NodePath("../ChasingState")
+
+[node name="BubbledTimer" type="Timer" parent="StateMachine/BubbledState" unique_id=1585621111]
+wait_time = 5.0
+one_shot = true
+
+[node name="BounceArea" type="Area2D" parent="." unique_id=382997173]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 2
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BounceArea" unique_id=1923003416]
+shape = SubResource("CircleShape2D_2r4mg")
+debug_color = Color(0.74, 0.46866667, 0, 0.19215687)
+
+[connection signal="body_entered" from="TriggerZone" to="StateMachine/IdleState" method="_on_trigger_zone_body_entered"]
+[connection signal="timeout" from="StateMachine/BubbledState/BubbledTimer" to="StateMachine/BubbledState" method="_on_bubbled_timer_timeout"]
+[connection signal="body_entered" from="BounceArea" to="StateMachine/BubbledState" method="_on_bounce_area_body_entered"]

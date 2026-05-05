@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ckj6t2hvju2rl"]
 
 [ext_resource type="Script" uid="uid://c0w4rmmjvorms" path="res://Menus/ResultMenu/result_menu.gd" id="1_k8xf0"]
-[ext_resource type="FontFile" uid="uid://c2rv6mu5r618h" path="res://Resources/Pixel Game.otf" id="2_1u1ba"]
+[ext_resource type="FontFile" uid="uid://c2rv6mu5r618h" path="res://Resources/Fonts/Pixel Game.otf" id="2_1u1ba"]
 
 [node name="ResultMenu" type="Control" unique_id=1802406152]
 layout_mode = 3

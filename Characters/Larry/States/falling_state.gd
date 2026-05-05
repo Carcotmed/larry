@@ -8,7 +8,7 @@ extends State
 @onready var landing_sound: AudioStreamPlayer2D = %LandingSound
 
 func enter():
-	pass
+	sprite.play("jumping")
 	
 func exit():
 	landing_sound.play()

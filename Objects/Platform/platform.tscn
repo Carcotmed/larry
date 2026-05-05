@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://8h0yt13cwl6k"]
 
+[ext_resource type="Script" uid="uid://cspx23qyv3ee6" path="res://Objects/Platform/platform.gd" id="1_jo8n5"]
 [ext_resource type="Texture2D" uid="uid://1oafyypeuxdr" path="res://icon.svg" id="2_jo8n5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jo8n5"]
@@ -8,6 +9,7 @@ size = Vector2(128, 128)
 [node name="Platform" type="CharacterBody2D" unique_id=1746797079]
 scale = Vector2(1.0711942, 0.06521664)
 collision_mask = 6
+script = ExtResource("1_jo8n5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1707756426]
 shape = SubResource("RectangleShape2D_jo8n5")

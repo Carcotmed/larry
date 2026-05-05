@@ -1,6 +1,8 @@
 extends State
 
 @onready var sprite: AnimatedSprite2D = %Sprite
+@onready var ray_cast_down_right: RayCast2D = %RayCastDownRight
+@onready var ray_cast_down_left: RayCast2D = %RayCastDownLeft
 @onready var ray_cast_right: RayCast2D = %RayCastRight
 @onready var ray_cast_left: RayCast2D = %RayCastLeft
 
@@ -9,12 +11,12 @@ extends State
 var orientation = 1
 
 func enter():
-	sprite.play("running")
+	sprite.play("walking")
 
-func process_physics(delta: float) -> State:
-	if orientation == 1 && !ray_cast_right.is_colliding():
+func process_physics(_delta: float) -> State:
+	if orientation == 1 && (!ray_cast_down_right.is_colliding() or ray_cast_right.is_colliding()):
 		orientation = -1	
-	elif orientation == -1 && !ray_cast_left.is_colliding():
+	elif orientation == -1 && (!ray_cast_down_left.is_colliding() or ray_cast_left.is_colliding()):
 		orientation = 1
 	
 	sprite.flip_h = orientation > 0

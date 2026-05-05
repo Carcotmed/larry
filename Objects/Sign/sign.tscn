@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://cf5k2a4cvhtxc"]
+
+[ext_resource type="Script" uid="uid://dva6rdtojlwnp" path="res://Objects/Sign/sign.gd" id="1_icf5m"]
+[ext_resource type="Texture2D" uid="uid://bullqwpdvmdbo" path="res://Objects/Sign/sign.png" id="1_yi8gk"]
+[ext_resource type="Texture2D" uid="uid://uq0l2f08p7sa" path="res://Resources/TileSets/sign_background.png" id="3_k54pf"]
+[ext_resource type="FontFile" uid="uid://c2rv6mu5r618h" path="res://Resources/Fonts/Pixel Game.otf" id="4_tjkxh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yi8gk"]
+size = Vector2(52, 42)
+
+[node name="Sign" type="Area2D" unique_id=1639449405]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_icf5m")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1164562984]
+texture = ExtResource("1_yi8gk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1773726298]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_yi8gk")
+
+[node name="Control" type="Control" parent="." unique_id=1716640672]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -60.0
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Control" unique_id=1611232609]
+layout_mode = 0
+offset_left = -75.0
+offset_top = -37.5
+offset_right = 75.0
+offset_bottom = 37.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_k54pf")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="MarginContainer" type="MarginContainer" parent="Control" unique_id=1310242616]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -90.0
+offset_top = -37.5
+offset_right = 90.0
+offset_bottom = 37.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 5
+
+[node name="Label" type="Label" parent="Control/MarginContainer" unique_id=480206364]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("4_tjkxh")
+text = "esto es un texto muy largo pero con varias lineas"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="LetterTimer" type="Timer" parent="." unique_id=871217902]
+unique_name_in_owner = true
+wait_time = 0.1
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="LetterTimer" to="." method="_on_letter_timer_timeout"]

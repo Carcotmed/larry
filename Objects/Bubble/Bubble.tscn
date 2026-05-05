@@ -7,7 +7,15 @@
 radius = 9.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hthru"]
-radius = 17.029387
+radius = 13.038404
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o6brc"]
+atlas = ExtResource("1_go5to")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blcp8"]
+atlas = ExtResource("1_go5to")
+region = Rect2(0, 48, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7g3vg"]
 atlas = ExtResource("1_go5to")
@@ -37,6 +45,17 @@ region = Rect2(0, 48, 16, 16)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_o6brc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_blcp8")
+}],
+"loop": true,
+"name": &"expiring",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_7g3vg")
 }, {
 "duration": 1.0,
@@ -54,6 +73,24 @@ animations = [{
 "texture": SubResource("AtlasTexture_nygxo")
 }, {
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_hthru")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nygxo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i6rse")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nygxo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i6rse")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lv5ru")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_i6rse")
 }, {
 "duration": 1.0,
@@ -61,11 +98,12 @@ animations = [{
 }],
 "loop": false,
 "name": &"spawn",
-"speed": 15.0
+"speed": 13.0
 }]
 
 [node name="Bubble" type="RigidBody2D" unique_id=561911913]
 collision_layer = 8
+collision_mask = 9
 mass = 0.1
 gravity_scale = -0.15
 script = ExtResource("1_hthru")
@@ -75,8 +113,7 @@ shape = SubResource("CircleShape2D_go5to")
 
 [node name="ContactHitbox" type="Area2D" parent="." unique_id=1155718376]
 collision_layer = 8
-collision_mask = 6
-monitoring = false
+collision_mask = 36
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ContactHitbox" unique_id=1858127435]
 shape = SubResource("CircleShape2D_hthru")
@@ -84,15 +121,26 @@ debug_color = Color(0.68, 0.35133332, 0, 0.105882354)
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1355342808]
 sprite_frames = SubResource("SpriteFrames_7g3vg")
-animation = &"pop"
+animation = &"spawn"
 autoplay = "spawn"
-frame = 1
+frame = 9
 frame_progress = 1.0
 
 [node name="ContactAwaitTimer" type="Timer" parent="." unique_id=48106133]
-wait_time = 0.4
+wait_time = 0.7
 one_shot = true
 autostart = true
 
-[connection signal="body_entered" from="ContactHitbox" to="." method="_on_area_2d_body_entered"]
+[node name="AlmostExpirationTimer" type="Timer" parent="." unique_id=1043147568]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[node name="ExpirationTimer" type="Timer" parent="." unique_id=996009675]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="body_entered" from="ContactHitbox" to="." method="_on_contact_hitbox_body_entered"]
 [connection signal="timeout" from="ContactAwaitTimer" to="." method="_on_contact_await_timer_timeout"]
+[connection signal="timeout" from="AlmostExpirationTimer" to="." method="_on_almost_expiration_timer_timeout"]
+[connection signal="timeout" from="ExpirationTimer" to="." method="_on_expiration_timer_timeout"]

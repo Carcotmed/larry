@@ -9,12 +9,12 @@ extends State
 func enter():
 	sprite.play("running")
 	
-func process_input(event: InputEvent) -> State:
+func process_input(_event: InputEvent) -> State:
 	if Input.is_action_just_pressed("Jump") and parent.is_on_floor():
 		return jumping_state
 	return null
 
-func process_physics(delta: float) -> State:
+func process_physics(_delta: float) -> State:
 	var movement = Input.get_axis('Move Left', 'Move Right') * Constants.player_move_speed
 	
 	if movement == 0:

@@ -23,3 +23,5 @@ position = Vector2(-2.289852e-06, 75.63571)
 rotation = 1.5707964
 scale = Vector2(0.5907366, 528.85657)
 texture = SubResource("GradientTexture1D_6tk5x")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

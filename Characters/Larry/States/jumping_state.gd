@@ -5,11 +5,13 @@ extends State
 @export var falling_state: State
 
 @onready var sprite: AnimatedSprite2D = %Sprite
-@onready var jumping_sound: AudioStreamPlayer2D = %JumpingSound
+@onready var jump_sound: AudioStreamPlayer2D = $JumpSound
+
+@onready var bonk_area: Area2D = %BonkArea
 
 func enter():
 	sprite.play("jumping")
-	jumping_sound.play()
+	jump_sound.play()
 	parent.velocity.y = -Constants.player_jump_force
 
 func process_physics(delta: float) -> State:
@@ -33,3 +35,7 @@ func process_physics(delta: float) -> State:
 		return idle_state
 	
 	return null
+
+
+func _on_bonk_area_body_entered(_body: Node2D) -> void:
+	parent.velocity.y = 0

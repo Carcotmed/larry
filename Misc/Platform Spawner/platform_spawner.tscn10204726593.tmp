@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://b5u72h4yljxc6"]
+
+[ext_resource type="Script" uid="uid://bjs07p7j0hkl1" path="res://Misc/Platform Spawner/platform_spawner.gd" id="1_84t4n"]
+
+[node name="PlatformSpawner" type="Area2D" unique_id=1136181079]
+script = ExtResource("1_84t4n")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

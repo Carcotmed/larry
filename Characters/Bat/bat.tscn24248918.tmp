@@ -1,0 +1,187 @@
+[gd_scene format=3 uid="uid://8jtmcd8cqdce"]
+
+[ext_resource type="Script" uid="uid://scs57ki3po1x" path="res://Characters/Bat/bat.gd" id="1_dbd86"]
+[ext_resource type="Texture2D" uid="uid://byumtk7wdpshj" path="res://Characters/Bat/bat.png" id="2_momkg"]
+[ext_resource type="Script" uid="uid://nbypxw4kebrl" path="res://Misc/State Machines/Common/state_machine.gd" id="2_ovd7t"]
+[ext_resource type="Script" uid="uid://cyao4bmknjaa7" path="res://Characters/Bat/states/idle_state.gd" id="3_momkg"]
+[ext_resource type="Script" uid="uid://c4uy3cj1gilu2" path="res://Characters/Bat/states/returning_to_idle_state.gd" id="4_shk6a"]
+[ext_resource type="Script" uid="uid://coi4y4uprj6so" path="res://Characters/Bat/states/roaming_state.gd" id="4_vfgvi"]
+[ext_resource type="Script" uid="uid://c0bjnfc37wlvq" path="res://Characters/Bat/states/attacking_state.gd" id="5_shk6a"]
+[ext_resource type="Script" uid="uid://bxif06g3ro3cv" path="res://Characters/Bat/states/bubbled_state.gd" id="6_iqo0i"]
+[ext_resource type="Script" uid="uid://brftf1x30ha6c" path="res://Characters/Bat/states/stalking_state.gd" id="7_evj2c"]
+[ext_resource type="Script" uid="uid://c4cu1lwaobupc" path="res://Characters/Bat/states/returning_from_attack_state.gd" id="10_shk6a"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_momkg"]
+radius = 8.0
+height = 32.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_momkg"]
+atlas = ExtResource("2_momkg")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_shk6a"]
+atlas = ExtResource("2_momkg")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iqo0i"]
+atlas = ExtResource("2_momkg")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_evj2c"]
+atlas = ExtResource("2_momkg")
+region = Rect2(0, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cv8dp"]
+atlas = ExtResource("2_momkg")
+region = Rect2(0, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u8nfl"]
+atlas = ExtResource("2_momkg")
+region = Rect2(0, 256, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v4plp"]
+atlas = ExtResource("2_momkg")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2fflx"]
+atlas = ExtResource("2_momkg")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vfgvi"]
+atlas = ExtResource("2_momkg")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ovd7t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_momkg")
+}],
+"loop": true,
+"name": &"attacking",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_shk6a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iqo0i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_evj2c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iqo0i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_shk6a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cv8dp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u8nfl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cv8dp")
+}],
+"loop": true,
+"name": &"bubbled",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v4plp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2fflx")
+}],
+"loop": true,
+"name": &"flying",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vfgvi")
+}],
+"loop": false,
+"name": &"hanging",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vfgvi"]
+size = Vector2(10, 2)
+
+[node name="Bat" type="CharacterBody2D" unique_id=1717071745]
+script = ExtResource("1_dbd86")
+
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=2110351681]
+position = Vector2(0, 1)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_momkg")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1860307410]
+unique_name_in_owner = true
+sprite_frames = SubResource("SpriteFrames_ovd7t")
+animation = &"flying"
+autoplay = "hanging"
+frame_progress = 0.8050052
+
+[node name="StateMachine" type="Node" parent="." unique_id=195628836 node_paths=PackedStringArray("parent", "initial_state")]
+unique_name_in_owner = true
+script = ExtResource("2_ovd7t")
+parent = NodePath("..")
+initial_state = NodePath("IdleState")
+metadata/_custom_type_script = "uid://nbypxw4kebrl"
+
+[node name="IdleState" type="Node" parent="StateMachine" unique_id=498741550 node_paths=PackedStringArray("roaming_state")]
+script = ExtResource("3_momkg")
+roaming_state = NodePath("../RoamingState")
+
+[node name="IdleTimer" type="Timer" parent="StateMachine/IdleState" unique_id=224754014]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="ReturningToIdleState" type="Node" parent="StateMachine" unique_id=289270665 node_paths=PackedStringArray("idle_state")]
+script = ExtResource("4_shk6a")
+idle_state = NodePath("../IdleState")
+
+[node name="CeilingCheck" type="Area2D" parent="StateMachine/ReturningToIdleState" unique_id=2134367852]
+unique_name_in_owner = true
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StateMachine/ReturningToIdleState/CeilingCheck" unique_id=864594067]
+position = Vector2(0, -7)
+shape = SubResource("RectangleShape2D_vfgvi")
+debug_color = Color(0.83, 0.40116668, 0, 0.20784314)
+
+[node name="RoamingState" type="Node" parent="StateMachine" unique_id=2002780450 node_paths=PackedStringArray("return_to_idle_state")]
+script = ExtResource("4_vfgvi")
+return_to_idle_state = NodePath("../ReturningToIdleState")
+
+[node name="RoamingTimer" type="Timer" parent="StateMachine/RoamingState" unique_id=1071048479]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="AttackingState" type="Node" parent="StateMachine" unique_id=417833795]
+script = ExtResource("5_shk6a")
+
+[node name="BubbledState" type="Node" parent="StateMachine" unique_id=840517428]
+script = ExtResource("6_iqo0i")
+
+[node name="StalkingState" type="Node" parent="StateMachine" unique_id=60635124]
+script = ExtResource("7_evj2c")
+
+[node name="ReturningFromAttackState" type="Node" parent="StateMachine" unique_id=629477269]
+script = ExtResource("10_shk6a")
+
+[node name="FlappingTimer" type="Timer" parent="." unique_id=407647450]
+wait_time = 0.33
+autostart = true
+
+[connection signal="timeout" from="StateMachine/IdleState/IdleTimer" to="StateMachine/IdleState" method="_on_idle_timer_timeout"]
+[connection signal="body_entered" from="StateMachine/ReturningToIdleState/CeilingCheck" to="StateMachine/ReturningToIdleState" method="_on_ceiling_check_body_entered"]
+[connection signal="timeout" from="StateMachine/RoamingState/RoamingTimer" to="StateMachine/RoamingState" method="_on_roaming_timer_timeout"]
+[connection signal="timeout" from="FlappingTimer" to="StateMachine/ReturningToIdleState" method="_on_flapping_timer_timeout"]
+[connection signal="timeout" from="FlappingTimer" to="StateMachine/RoamingState" method="_on_flapping_timer_timeout"]

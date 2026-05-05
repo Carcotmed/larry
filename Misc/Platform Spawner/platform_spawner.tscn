@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://b5u72h4yljxc6"]
+
+[ext_resource type="Script" uid="uid://bjs07p7j0hkl1" path="res://Misc/Platform Spawner/platform_spawner.gd" id="1_84t4n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_84t4n"]
+size = Vector2(432, 96)
+
+[node name="PlatformSpawner" type="Area2D" unique_id=1136181079]
+collision_layer = 16
+collision_mask = 3
+script = ExtResource("1_84t4n")
+
+[node name="SpawnArea" type="CollisionShape2D" parent="." unique_id=1773434421]
+position = Vector2(0, -37)
+shape = SubResource("RectangleShape2D_84t4n")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1302296370]
+position = Vector2(0, 23)
+
+[node name="PlatformsContainer" type="Node" parent="." unique_id=1733083379]
+unique_name_in_owner = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]

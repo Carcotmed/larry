@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bq70h47swnkvo"]
 
 [ext_resource type="Script" uid="uid://bdw54y65wckgt" path="res://Menus/PauseMenu/pause_menu.gd" id="1_36y7k"]
-[ext_resource type="FontFile" uid="uid://c2rv6mu5r618h" path="res://Resources/Pixel Game.otf" id="2_wxfa8"]
+[ext_resource type="FontFile" uid="uid://c2rv6mu5r618h" path="res://Resources/Fonts/Pixel Game.otf" id="2_wxfa8"]
 
 [node name="PauseMenu" type="Control" unique_id=1802406152]
 layout_mode = 3

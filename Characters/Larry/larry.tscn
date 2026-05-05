@@ -6,12 +6,16 @@
 [ext_resource type="Texture2D" uid="uid://bl8g6ht2n3ji5" path="res://Characters/Larry/larry.png" id="2_vcdmm"]
 [ext_resource type="Script" uid="uid://xc2l5fv2lok7" path="res://Characters/Larry/States/jumping_state.gd" id="4_ub2mn"]
 [ext_resource type="Script" uid="uid://68prq86qnv5a" path="res://Characters/Larry/States/running_state.gd" id="6_llxk5"]
+[ext_resource type="AudioStream" uid="uid://ea6weclaqu3r" path="res://Resources/Sounds/Jump.wav" id="6_qg7lh"]
 [ext_resource type="Script" uid="uid://dgj2ly4mbymw" path="res://Characters/Larry/States/falling_state.gd" id="7_pb1v7"]
 [ext_resource type="Script" uid="uid://batgor0wl04tg" path="res://Characters/Larry/States/dead_state.gd" id="8_8vhg5"]
 [ext_resource type="Script" uid="uid://dcrhv01td2nji" path="res://Characters/Larry/gun_pivot.gd" id="9_g5g8x"]
+[ext_resource type="Script" uid="uid://ca6scrg4jntqp" path="res://Characters/Larry/States/super_jumping_state.gd" id="9_jtifv"]
 [ext_resource type="Script" uid="uid://dsu4630b6nqqs" path="res://Characters/Larry/bubble_gun.gd" id="10_flha0"]
 [ext_resource type="Texture2D" uid="uid://bks3t7r75jvx2" path="res://Characters/Larry/bubble_gun.png" id="10_xjor5"]
-[ext_resource type="PackedScene" uid="uid://dkdca2xqu5d3x" path="res://Objects/Bubble/Bubble.tscn" id="11_xhuru"]
+[ext_resource type="AudioStream" uid="uid://18w1vag80bd2" path="res://Resources/Sounds/SuperJump.wav" id="11_qg7lh"]
+[ext_resource type="PackedScene" uid="uid://dkdca2xqu5d3x" path="res://Objects/Bubble/bubble.tscn" id="11_xhuru"]
+[ext_resource type="AudioStream" uid="uid://b8ntkwfmqwchp" path="res://Resources/Sounds/Shoot1.wav" id="16_0p5ot"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_llxk5"]
 radius = 15.0
@@ -146,12 +150,17 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="Larry" type="CharacterBody2D" unique_id=1903725710 node_paths=PackedStringArray("dead_state", "jumping_state")]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jtifv"]
+radius = 3.0
+height = 14.0
+
+[node name="Larry" type="CharacterBody2D" unique_id=1903725710 node_paths=PackedStringArray("dead_state", "jumping_state", "super_jumping_state")]
 collision_layer = 2
-collision_mask = 5
+collision_mask = 37
 script = ExtResource("1_a6pft")
 dead_state = NodePath("StateMachine/DeadState")
 jumping_state = NodePath("StateMachine/JumpingState")
+super_jumping_state = NodePath("StateMachine/SuperJumpingState")
 
 [node name="Hitbox" type="CollisionShape2D" parent="." unique_id=1277221526]
 position = Vector2(0, -14)
@@ -161,13 +170,20 @@ shape = SubResource("CircleShape2D_llxk5")
 unique_name_in_owner = true
 position = Vector2(0, -14)
 sprite_frames = SubResource("SpriteFrames_iorl1")
-animation = &"running"
-frame_progress = 0.14599192
+animation = &"idle"
 
-[node name="StateMachine" type="Node" parent="." unique_id=1265575158 node_paths=PackedStringArray("parent", "initial_state")]
+[node name="BonkArea" type="Area2D" parent="." unique_id=1061477224]
+unique_name_in_owner = true
+
+[node name="BonkShape" type="CollisionShape2D" parent="BonkArea" unique_id=22267977]
+position = Vector2(0, -27)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_jtifv")
+debug_color = Color(0.78, 0.44199997, 0, 0.12156863)
+
+[node name="StateMachine" type="Node" parent="." unique_id=1265575158 node_paths=PackedStringArray("initial_state")]
 unique_name_in_owner = true
 script = ExtResource("1_h3ed6")
-parent = NodePath("..")
 initial_state = NodePath("IdleState")
 metadata/_custom_type_script = "uid://nbypxw4kebrl"
 
@@ -182,6 +198,10 @@ idle_state = NodePath("../IdleState")
 running_state = NodePath("../RunningState")
 falling_state = NodePath("../FallingState")
 
+[node name="JumpSound" type="AudioStreamPlayer2D" parent="StateMachine/JumpingState" unique_id=1269519557]
+stream = ExtResource("6_qg7lh")
+bus = &"SFX"
+
 [node name="RunningState" type="Node" parent="StateMachine" unique_id=197856861 node_paths=PackedStringArray("idle_state", "jumping_state", "falling_state")]
 script = ExtResource("6_llxk5")
 idle_state = NodePath("../IdleState")
@@ -194,14 +214,21 @@ idle_state = NodePath("../IdleState")
 jumping_state = NodePath("../JumpingState")
 running_state = NodePath("../RunningState")
 
+[node name="LandingSound" type="AudioStreamPlayer2D" parent="StateMachine/FallingState" unique_id=156488574]
+unique_name_in_owner = true
+bus = &"SFX"
+
 [node name="DeadState" type="Node" parent="StateMachine" unique_id=1022986084]
 script = ExtResource("8_8vhg5")
 
-[node name="JumpingSound" type="AudioStreamPlayer2D" parent="." unique_id=1830654249]
-unique_name_in_owner = true
+[node name="SuperJumpingState" type="Node" parent="StateMachine" unique_id=1719742774 node_paths=PackedStringArray("idle_state", "running_state", "falling_state")]
+script = ExtResource("9_jtifv")
+idle_state = NodePath("../IdleState")
+running_state = NodePath("../RunningState")
+falling_state = NodePath("../FallingState")
 
-[node name="LandingSound" type="AudioStreamPlayer2D" parent="." unique_id=156488574]
-unique_name_in_owner = true
+[node name="SuperJumpSound" type="AudioStreamPlayer2D" parent="StateMachine/SuperJumpingState" unique_id=57054027]
+stream = ExtResource("11_qg7lh")
 
 [node name="GunPivot" type="Marker2D" parent="." unique_id=572359290]
 position = Vector2(0, -13)
@@ -222,5 +249,9 @@ position = Vector2(8, -1)
 [node name="ShootCooldown" type="Timer" parent="GunPivot/BubbleGun" unique_id=2104711118]
 
 [node name="ShootSound" type="AudioStreamPlayer2D" parent="GunPivot/BubbleGun" unique_id=1337435448]
+stream = ExtResource("16_0p5ot")
 
+[node name="BubblesContainer" type="Node" parent="GunPivot/BubbleGun" unique_id=1757610581]
+
+[connection signal="body_entered" from="BonkArea" to="StateMachine/JumpingState" method="_on_bonk_area_body_entered"]
 [connection signal="timeout" from="GunPivot/BubbleGun/ShootCooldown" to="GunPivot/BubbleGun" method="_on_shoot_cooldown_timeout"]
