@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cfeg1ea658asp"]
+
+[ext_resource type="Script" uid="uid://dcusjgjuxler4" path="res://Misc/Components/hurtbox_component.gd" id="1_qake6"]
+
+[node name="HurtboxComponent" type="Area2D" unique_id=1152268858]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_qake6")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

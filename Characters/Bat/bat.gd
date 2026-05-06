@@ -7,6 +7,7 @@ class_name BatEnemy
 @export var bubbled_state: State
 
 func _ready() -> void:
+	self.add_to_group("enemies")
 	state_machine.init(self)
 
 func _physics_process(delta: float) -> void:

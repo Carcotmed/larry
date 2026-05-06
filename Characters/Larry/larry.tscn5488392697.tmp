@@ -266,9 +266,5 @@ stream = ExtResource("16_0p5ot")
 
 [node name="BubblesContainer" type="Node" parent="GunPivot/BubbleGun" unique_id=1757610581]
 
-[node name="HurtSound" type="AudioStreamPlayer2D" parent="." unique_id=444370028]
-unique_name_in_owner = true
-stream = ExtResource("16_0p5ot")
-
 [connection signal="body_entered" from="BonkArea" to="StateMachine/JumpingState" method="_on_bonk_area_body_entered"]
 [connection signal="timeout" from="GunPivot/BubbleGun/ShootCooldown" to="GunPivot/BubbleGun" method="_on_shoot_cooldown_timeout"]

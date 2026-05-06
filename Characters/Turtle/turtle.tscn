@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://b6suqoct5vonq" path="res://Characters/Turtle/turtle-2.png" id="4_j45i5"]
 [ext_resource type="Script" uid="uid://c2yaonm002die" path="res://Characters/Turtle/States/falling_state.gd" id="5_eghih"]
 [ext_resource type="Script" uid="uid://c8rhs71hgg0nk" path="res://Characters/Turtle/States/bubbled_state.gd" id="8_da27a"]
+[ext_resource type="PackedScene" uid="uid://qjoyjq1jcj16" path="res://Misc/Components/damage_component.tscn" id="8_wydy2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oy22m"]
 atlas = ExtResource("4_j45i5")
@@ -159,6 +160,9 @@ height = 34.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_j45i5"]
 radius = 21.023796
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_da27a"]
+radius = 21.0
+
 [node name="Turtle" type="CharacterBody2D" unique_id=1243228890 node_paths=PackedStringArray("bubbled_state")]
 collision_layer = 4
 collision_mask = 35
@@ -233,6 +237,14 @@ monitoring = false
 position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_j45i5")
 debug_color = Color(0.77, 0.4491667, 0, 0.15294118)
+
+[node name="DamageComponent" parent="." unique_id=390571549 instance=ExtResource("8_wydy2")]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageComponent" unique_id=1157540822]
+visible = false
+position = Vector2(0, -6)
+shape = SubResource("CircleShape2D_da27a")
 
 [connection signal="timeout" from="StateMachine/BubbledState/BubbledTimer" to="StateMachine/BubbledState" method="_on_bubbled_timer_timeout"]
 [connection signal="body_entered" from="BounceArea" to="StateMachine/BubbledState" method="_on_bounce_area_body_entered"]

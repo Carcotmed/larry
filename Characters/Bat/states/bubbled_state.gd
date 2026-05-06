@@ -3,6 +3,7 @@ extends State
 @onready var sprite: AnimatedSprite2D = %Sprite
 @onready var bubbled_timer: Timer = $BubbledTimer
 @onready var bounce_area: Area2D = %BounceArea
+@onready var damage_component: DamageComponent = %DamageComponent
 
 @export var chasing_state: State
 
@@ -13,10 +14,12 @@ func enter():
 	bubbled_timer.start()
 	change_to_chasing = false
 	bounce_area.monitoring = true
+	damage_component.monitoring = false
 	parent.velocity.x *= .7
 	
 func exit():
 	bounce_area.monitoring = false
+	damage_component.monitoring = true
 	
 func process_frame(_delta: float) -> State:
 	if change_to_chasing:

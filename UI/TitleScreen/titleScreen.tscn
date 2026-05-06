@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cbjqif7o3hh0y"]
 
-[ext_resource type="Script" uid="uid://djjxm6dhvcjlr" path="res://Menus/TitleScreen/title_screen.gd" id="1_7tr42"]
+[ext_resource type="Script" uid="uid://djjxm6dhvcjlr" path="res://UI/TitleScreen/title_screen.gd" id="1_7tr42"]
 [ext_resource type="Texture2D" uid="uid://1oafyypeuxdr" path="res://icon.svg" id="1_xoben"]
 [ext_resource type="FontFile" uid="uid://c2rv6mu5r618h" path="res://Resources/Fonts/Pixel Game.otf" id="2_vkv60"]
 

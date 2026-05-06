@@ -1,16 +1,16 @@
-[gd_scene format=3 uid="uid://bq70h47swnkvo"]
+[gd_scene format=3 uid="uid://ckj6t2hvju2rl"]
 
-[ext_resource type="Script" uid="uid://bdw54y65wckgt" path="res://Menus/PauseMenu/pause_menu.gd" id="1_36y7k"]
-[ext_resource type="FontFile" uid="uid://c2rv6mu5r618h" path="res://Resources/Fonts/Pixel Game.otf" id="2_wxfa8"]
+[ext_resource type="Script" uid="uid://c0w4rmmjvorms" path="res://UI/ResultMenu/result_menu.gd" id="1_k8xf0"]
+[ext_resource type="FontFile" uid="uid://c2rv6mu5r618h" path="res://Resources/Fonts/Pixel Game.otf" id="2_1u1ba"]
 
-[node name="PauseMenu" type="Control" unique_id=1802406152]
+[node name="ResultMenu" type="Control" unique_id=1802406152]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_36y7k")
+script = ExtResource("1_k8xf0")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=823392326]
 
@@ -44,12 +44,12 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 20
 
-[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1575857948]
+[node name="ResultLabel" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1575857948]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("2_wxfa8")
+theme_override_fonts/font = ExtResource("2_1u1ba")
 theme_override_font_sizes/font_size = 47
-text = "Paused"
+text = "You Died"
 
 [node name="HSeparator" type="HSeparator" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer" unique_id=314811694]
 layout_mode = 2
@@ -61,21 +61,15 @@ layout_mode = 2
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="ResumeButton" type="Button" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1762723022]
+[node name="RestartButton" type="Button" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1762723022]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_wxfa8")
+theme_override_fonts/font = ExtResource("2_1u1ba")
 theme_override_font_sizes/font_size = 40
-text = "Resume"
-
-[node name="ConfigurationButton" type="Button" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=622903900]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_wxfa8")
-theme_override_font_sizes/font_size = 40
-text = "Configuration"
+text = "Restart"
 
 [node name="ExitButton" type="Button" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=67908777]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_wxfa8")
+theme_override_fonts/font = ExtResource("2_1u1ba")
 theme_override_font_sizes/font_size = 40
 text = "Exit to Menu"
 
@@ -89,15 +83,15 @@ theme_override_constants/separation = 10
 
 [node name="Label" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=857694514]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_wxfa8")
+theme_override_fonts/font = ExtResource("2_1u1ba")
 theme_override_font_sizes/font_size = 30
 text = "Depth: 250m"
 
 [node name="Label2" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=276368000]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_wxfa8")
+theme_override_fonts/font = ExtResource("2_1u1ba")
 theme_override_font_sizes/font_size = 30
 text = "Score: a lot"
 
-[connection signal="pressed" from="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

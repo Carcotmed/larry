@@ -3,10 +3,10 @@ extends Node
 var paused: bool = false
 var dead: bool = false
 
-var pause_menu_scene = preload("res://Menus/PauseMenu/pause_menu.tscn")
+var pause_menu_scene = preload("res://UI/PauseMenu/pause_menu.tscn")
 var pause_menu_instance: Control
 
-var results_menu_scene = preload("res://Menus/ResultMenu/result_menu.tscn")
+var results_menu_scene = preload("res://UI/ResultMenu/result_menu.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
