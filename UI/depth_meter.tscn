@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://csxqqarybp4n6"]
+
+[ext_resource type="Script" uid="uid://dvqb06im0vep3" path="res://UI/depth_meter.gd" id="1_8eph7"]
+[ext_resource type="Texture2D" uid="uid://bl8g6ht2n3ji5" path="res://Characters/Larry/larry.png" id="2_o6uvs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vd3tv"]
+atlas = ExtResource("2_o6uvs")
+region = Rect2(13, 0, 19, 22)
+
+[node name="DepthMeter" type="Control" unique_id=588402341]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8eph7")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1192177100]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 30
+
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer" unique_id=1082035116]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+size_flags_vertical = 1
+fill_mode = 3
+show_percentage = false
+
+[node name="CharacterIcon" type="TextureRect" parent="MarginContainer/ProgressBar" unique_id=2027349373]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = SubResource("AtlasTexture_vd3tv")
